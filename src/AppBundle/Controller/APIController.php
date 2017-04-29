@@ -12,6 +12,7 @@ use AppBundle\Service\TranslateAPI;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,7 +26,15 @@ class APIController extends Controller
     {
         $transform = $this->get('app.translation_api');
         $transWord = $transform->parse($transWord, $fromLng, $destLng);
-        return new JsonResponse($transWord);
+        $jsonWords= array();
+        foreach($transWord as $key=>$item) {
+            array_push($jsonWords, $transWord[$key]['tuc'][0]['phrase']);
+            array_push($jsonWords, $transWord[$key]['tuc'][0]['meanings']);
+
+        }
+        return new JsonResponse($jsonWords);
     }
+
+
 
 }
