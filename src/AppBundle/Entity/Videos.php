@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -18,74 +20,82 @@ class Videos
      */
     private $id;
     /**
-     * @ORM\Column(length=60)
+     * @ORM\Column(type="string", length=60)
      */
     private $name;
     /**
-     * @ORM\Column(length=1024)
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=1024)
      */
     private $annotation;
 
     /**
-     * @ORM\Column(length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $background;
 
     /**
-     * @return mixed
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="video")
+     * @ORM\JoinColumn(nullable=false)
      */
+    private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="VideoSeries", mappedBy="video")
+     */
+    private $course;
+
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAnnotation()
     {
         return $this->annotation;
     }
 
-    /**
-     * @param mixed $annotation
-     */
     public function setAnnotation($annotation)
     {
         $this->annotation = $annotation;
     }
 
-    /**
-     * @return mixed
-     */
     public function getBackground()
     {
         return $this->background;
     }
 
-    /**
-     * @param mixed $background
-     */
     public function setBackground($background)
     {
         $this->background = $background;
     }
 
+    public function getCategory()
+    {
+        return $this->category;
+    }
 
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return ArrayCollection|VideoSeries[]
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
 }

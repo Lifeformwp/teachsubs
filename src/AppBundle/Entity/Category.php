@@ -3,7 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -18,6 +19,7 @@ class Category
      */
     private $id;
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(length=60)
      */
     private $name;
@@ -32,60 +34,50 @@ class Category
     private $background;
 
     /**
-     * @return mixed
+     * @ORM\OneToMany(targetEntity="Videos", mappedBy="category")
      */
+    private $video;
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getAnnotation()
     {
         return $this->annotation;
     }
 
-    /**
-     * @param mixed $annotation
-     */
     public function setAnnotation($annotation)
     {
         $this->annotation = $annotation;
     }
 
-    /**
-     * @return mixed
-     */
     public function getBackground()
     {
         return $this->background;
     }
 
-    /**
-     * @param mixed $background
-     */
     public function setBackground($background)
     {
         $this->background = $background;
     }
 
-
+    /**
+     * @return ArrayCollection|Videos[]
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
 }

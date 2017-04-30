@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170423174221 extends AbstractMigration
+class Version20170430114450 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -16,7 +16,9 @@ class Version20170423174221 extends AbstractMigration
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE videos CHANGE category_id category_id INT NOT NULL');
     }
 
     /**
@@ -25,6 +27,8 @@ class Version20170423174221 extends AbstractMigration
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE videos CHANGE category_id category_id INT DEFAULT NULL');
     }
 }
