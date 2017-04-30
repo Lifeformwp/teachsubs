@@ -1,0 +1,12 @@
+AppBundle\Entity\Category:
+    category_{1..12}:
+        name: <category()>
+        annotation: <sentence()>
+        background: <text(40)>
+
+AppBundle\Entity\Videos:
+    video_{1..20}:
+        name: <seriesNames()>
+        annotation: <sentence()>
+        background: <text(40)>
+        category: '@category_*'

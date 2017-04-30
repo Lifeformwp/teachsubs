@@ -20,16 +20,16 @@ class Category
     private $id;
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(length=60)
+     * @ORM\Column(type="string", length=60)
      */
     private $name;
     /**
-     * @ORM\Column(length=1024)
+     * @ORM\Column(type="string", length=1024)
      */
     private $annotation;
 
     /**
-     * @ORM\Column(length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $background;
 
