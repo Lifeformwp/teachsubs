@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="video_series")
+ * @ORM\HasLifecycleCallbacks
  */
 class VideoSeries
 {
@@ -32,52 +33,67 @@ class VideoSeries
     private $video;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updated_at;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
      */
     private $en_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $ru_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $it_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $de_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $jp_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $fr_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $zh_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $cs_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $lt_sub;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $pl_sub;
 
@@ -217,5 +233,33 @@ class VideoSeries
     public function setPolishSub($pl_sub)
     {
         $this->pl_sub = $pl_sub;
+    }
+
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+    }
+
+    /**
+     * Gets triggered only on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime("now");
+    }
+
+    /**
+     * Gets triggered every time on update
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime("now");
     }
 }

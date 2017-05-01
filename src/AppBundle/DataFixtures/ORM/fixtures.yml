@@ -5,8 +5,18 @@ AppBundle\Entity\Category:
         background: <text(40)>
 
 AppBundle\Entity\Videos:
-    video_{1..20}:
+    videos_{1..20}:
         name: <seriesNames()>
         annotation: <sentence()>
         background: <text(40)>
         category: '@category_*'
+
+AppBundle\Entity\VideoSeries:
+    videoseries_{1..60}:
+        name: <name()>
+        en_sub: <name()>
+        ru_sub: <name()>
+        jp_sub: <name()>
+        de_sub: <name()>
+        it_sub: <name()>
+        video: '@videos_*'

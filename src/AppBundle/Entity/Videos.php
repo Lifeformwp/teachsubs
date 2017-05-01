@@ -25,12 +25,12 @@ class Videos
     private $name;
     /**
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=1024)
+     * @ORM\Column(type="string", length=1024, nullable=true)
      */
     private $annotation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $background;
 
