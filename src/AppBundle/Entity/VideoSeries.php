@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\VideoSeriesRepository")
  * @ORM\Table(name="video_series")
  * @ORM\HasLifecycleCallbacks
  */
@@ -96,6 +96,12 @@ class VideoSeries
      * @ORM\Column(type="string", nullable=true)
      */
     private $pl_sub;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished = true;
+
 
     public function getId()
     {
@@ -261,5 +267,25 @@ class VideoSeries
     public function onPreUpdate()
     {
         $this->updated_at = new \DateTime("now");
+    }
+
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 }

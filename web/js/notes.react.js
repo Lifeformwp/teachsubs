@@ -12,7 +12,7 @@ var NoteSection = React.createClass({
 
     loadNotesFromServer: function() {
         $.ajax({
-            url: '/genus/octopus/notes',
+            url: this.props.url,
             success: function (data) {
                 this.setState({notes: data.notes});
             }.bind(this)
@@ -23,8 +23,7 @@ var NoteSection = React.createClass({
         return (
             <div>
                 <div className="notes-container">
-                    <h2 className="notes-header">Notes</h2>
-                    <div><i className="fa fa-plus plus-btn"></i></div>
+                    <h2 className="notes-header">Series</h2>
                 </div>
                 <NoteList notes={this.state.notes} />
             </div>

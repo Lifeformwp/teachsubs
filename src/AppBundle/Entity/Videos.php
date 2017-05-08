@@ -8,8 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\VideosRepository")
  * @ORM\Table(name="videos")
+ * @ORM\HasLifecycleCallbacks
  */
 class Videos
 {
@@ -42,9 +43,29 @@ class Videos
 
     /**
      * @ORM\OneToMany(targetEntity="VideoSeries", mappedBy="video")
+     * @ORM\OrderBy({"created_at"="DESC"})
      */
     private $course;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updated_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublished = true;
+
+    public function __construct()
+    {
+        $this->course = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -97,5 +118,43 @@ class Videos
     public function getCourse()
     {
         return $this->course;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Gets triggered only on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime("now");
+    }
+
+    /**
+     * Gets triggered every time on update
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime("now");
+    }
+
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
     }
 }
