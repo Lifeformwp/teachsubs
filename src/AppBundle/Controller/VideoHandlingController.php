@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class VideoHandlingController extends Controller
 {
     /**
      * @Route("/video/{videoName}", name="video_show")
@@ -33,7 +33,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/videos")
+     * @Route("/videos", name="show_all_videos")
      */
     public function listAction()
     {
@@ -43,17 +43,6 @@ class DefaultController extends Controller
 
         return $this->render('video/list.html.twig', [
             'videos' => $videos,
-        ]);
-    }
-
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
 

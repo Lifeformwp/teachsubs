@@ -20,7 +20,7 @@ class VideoSeriesRepository extends EntityRepository
             ->select('COUNT(series)')
             ->andWhere('series.video = :videos')
             ->setParameter('videos', $videos);
-        
+
         return $qb->getQuery()->getSingleScalarResult();
     }
 }
