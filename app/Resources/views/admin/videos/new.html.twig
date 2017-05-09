@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>New Video</h1>
+
+                {{ form_start(videoForm) }}
+                    {{ form_widget(videoForm) }}
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                {{ form_end(videoForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
