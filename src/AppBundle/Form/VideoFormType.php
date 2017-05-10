@@ -2,7 +2,11 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Category;
+use AppBundle\Repository\CategoryRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +17,20 @@ class VideoFormType extends AbstractType
         $builder
             ->add('name')
             ->add('annotation')
-            ->add('isPublished')
+            ->add('isPublished', ChoiceType::class, [
+                'choices' => [
+                    'Yes' => true,
+                    'No'  => false,
+                ]
+            ])
             ->add('background')
-            ->add('category')
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'placeholder' => 'Choose a proper Category',
+                'query_builder' => function(CategoryRepository $category) {
+                    return $category->AlphabeticalQuery();
+                }
+            ])
         ;
 
     }
