@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\Videos;
 use AppBundle\Form\VideoFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,6 +48,31 @@ class VideosAdminController extends Controller
         }
 
         return $this->render('admin/videos/new.html.twig', [
+            'videoForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/videos/{id}/edit", name="admin_videos_edit")
+     */
+    public function editAction(Request $request, Videos $video)
+    {
+        $form = $this->createForm(VideoFormType::class, $video);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $video = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($video);
+            $em->flush();
+
+            $this->addFlash('success', 'Video updated');
+
+            return $this->redirectToRoute('admin_videos_list');
+        }
+
+        return $this->render('admin/videos/edit.html.twig', [
             'videoForm' => $form->createView()
         ]);
     }

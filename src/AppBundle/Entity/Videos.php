@@ -21,6 +21,7 @@ class Videos
      */
     private $id;
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=60)
      */
     private $name;
@@ -31,6 +32,7 @@ class Videos
     private $annotation;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $background;

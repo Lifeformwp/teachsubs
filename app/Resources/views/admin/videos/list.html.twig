@@ -22,7 +22,7 @@
                             <td>{{ video.name }}</td>
                             <td>{{ video.category.name }}</td>
                             <td>
-                                <a href="#" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                                <a href="{{ path('admin_videos_edit', {'id': video.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
                             </td>
                         </tr>
                     {% endfor %}

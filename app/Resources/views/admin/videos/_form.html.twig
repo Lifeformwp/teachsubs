@@ -1,0 +1,12 @@
+
+{{ form_start(videoForm) }}
+                    {{ form_row(videoForm.name) }}
+                    {{ form_row(videoForm.annotation) }}
+                    {{ form_row(videoForm.isPublished) }}
+                    {{ form_row(videoForm.background, {
+                        'label': 'Background of video'
+                    }) }}
+                    {{ form_row(videoForm.category) }}
+
+<button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+{{ form_end(videoForm) }}
