@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="pull-right" style="margin-bottom: 10px; margin-top: 20px;">
+                    <a href="{{ path('admin_categories_new') }}" class="btn btn-primary pull-right">Add <span class="fa fa-plus-circle"></span></a>
+                </div>
+
+                <h1>Categories</h1>
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>Category</th>
+                        <th>Annotation</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.annotation }}</td>
+                            <td>
+                                <a href="{{ path('admin_categories_edit', {'id': category.id}) }}" class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

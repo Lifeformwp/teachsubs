@@ -488,6 +488,15 @@ Main components
         float: right;
     }*/
 
+    .nav-bar {
+        background-color: #bebac0;
+    }
+
+    .nav-bar a {
+        text-decoration: none;
+        font-size: 16pt;
+    }
+
     .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
         top: 24px;
         left: auto;

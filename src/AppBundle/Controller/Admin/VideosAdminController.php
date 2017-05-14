@@ -20,7 +20,7 @@ class VideosAdminController extends Controller
     {
         $videos = $this->getDoctrine()
             ->getRepository('AppBundle:Videos')
-            ->findAll();
+            ->findAllOrderByUpdatedAt();
 
         return $this->render('admin/videos/list.html.twig', array(
             'videos' => $videos
@@ -42,7 +42,7 @@ class VideosAdminController extends Controller
             $em->persist($video);
             $em->flush();
 
-            $this->addFlash('success', 'Video updated');
+            $this->addFlash('success', 'Video added');
 
             return $this->redirectToRoute('admin_videos_list');
         }
@@ -73,7 +73,8 @@ class VideosAdminController extends Controller
         }
 
         return $this->render('admin/videos/edit.html.twig', [
-            'videoForm' => $form->createView()
+            'videoForm' => $form->createView(),
+            'video' => $video
         ]);
     }
 }

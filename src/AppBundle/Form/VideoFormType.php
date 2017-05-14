@@ -32,7 +32,7 @@ class VideoFormType extends AbstractType
                 'class' => Category::class,
                 'placeholder' => 'Choose a proper Category',
                 'query_builder' => function(CategoryRepository $category) {
-                    return $category->AlphabeticalQuery();
+                    return $category->findAllOrderedByCategoryNameForVideos();
                 }
             ])
         ;

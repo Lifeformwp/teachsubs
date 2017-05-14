@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use AppBundle\Entity\Videos;
+use AppBundle\Entity\Category;
 use AppBundle\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -33,7 +34,6 @@ class BackgroundImageUploadListener
         $entity = $args->getEntity();
         if ($args->hasChangedField('background') && $entity->getBackground() === NULL) {
             $entity->setBackground($args->getOldValue('background'));
-            dump($entity);
         }
 
         $this->uploadFile($entity);
@@ -42,7 +42,7 @@ class BackgroundImageUploadListener
     private function uploadFile($entity)
     {
 
-        if (!$entity instanceof Videos) {
+        if (!$entity instanceof Videos && !$entity instanceof Category) {
             return;
         }
 

@@ -25,7 +25,10 @@
                 <li><a href="#">Login</a></li>
             </ul>
         </header>
-
+        <div class="nav-bar col-xs-12">
+            <a href="{{ path('admin_categories_list') }}">Categories</a>
+            <a href="{{ path('admin_videos_list') }}">Videos</a>
+        </div>
         <div class="main-content">
             {% for msg in app.session.flashBag.get('success') %}
                 <div class="alert alert-success">

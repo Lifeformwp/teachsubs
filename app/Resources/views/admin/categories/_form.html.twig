@@ -1,0 +1,10 @@
+
+{{ form_start(categoryForm) }}
+                    {{ form_row(categoryForm.name) }}
+                    {{ form_row(categoryForm.annotation) }}
+                    {{ form_row(categoryForm.background, {
+                        'label': 'Background of category page'
+                    }) }}
+
+<button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+{{ form_end(categoryForm) }}
