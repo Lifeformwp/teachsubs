@@ -6,4 +6,12 @@ parameters:
 services:
     app.translation_api:
         class: AppBundle\Service\TranslateAPI
-
+    app.backgroundimg_uploader:
+        class: AppBundle\FileUploader
+        arguments: ['%background_images%']
+    app.doctrine_backgroundimg_listener:
+        class: AppBundle\EventListener\BackgroundImageUploadListener
+        arguments: ['@app.backgroundimg_uploader', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

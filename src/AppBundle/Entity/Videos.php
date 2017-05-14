@@ -32,7 +32,6 @@ class Videos
     private $annotation;
 
     /**
-     * @Assert\NotBlank()
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      * @ORM\Column(type="string", length=255, nullable=true)
      */

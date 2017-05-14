@@ -20,7 +20,7 @@ class VideosAdminController extends Controller
     {
         $videos = $this->getDoctrine()
             ->getRepository('AppBundle:Videos')
-            ->findAllOrderByUpdatedAt();
+            ->findAll();
 
         return $this->render('admin/videos/list.html.twig', array(
             'videos' => $videos
@@ -37,25 +37,12 @@ class VideosAdminController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $video = $form->getData();
-            $backgroundImg = $video->getBackground();
-            $videoPersist = new Videos;
-            $fileName = md5(uniqid()).'.'.$backgroundImg->guessExtension();
-            $videoPersist->setName($video->getName());
-            $videoPersist->setAnnotation($video->getAnnotation());
-            $videoPersist->setBackground($fileName);
-            $videoPersist->setCategory($video->getCategory());
-            $videoPersist->setIsPublished($video->getIsPublished());
-
-            $backgroundImg->move(
-                $this->getParameter('background_images'),
-                $fileName
-            );
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($videoPersist);
+            $em->persist($video);
             $em->flush();
 
-            $this->addFlash('success', 'Video created');
+            $this->addFlash('success', 'Video updated');
 
             return $this->redirectToRoute('admin_videos_list');
         }
@@ -75,23 +62,11 @@ class VideosAdminController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $video = $form->getData();
-            $backgroundImg = $video->getBackground();
-            $videoPersist = new Videos;
-            $fileName = md5(uniqid()).'.'.$backgroundImg->guessExtension();
-            $videoPersist->setName($video->getName());
-            $videoPersist->setAnnotation($video->getAnnotation());
-            $videoPersist->setBackground($fileName);
-            $videoPersist->setCategory($video->getCategory());
-            $videoPersist->setIsPublished($video->getIsPublished());
-            $video->setBackground($fileName);
-            $backgroundImg->move(
-                $this->getParameter('background_images'),
-                $fileName
-            );
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($video);
             $em->flush();
+
             $this->addFlash('success', 'Video updated');
 
             return $this->redirectToRoute('admin_videos_list');
