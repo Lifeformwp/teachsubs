@@ -33,6 +33,7 @@ class Videos
 
     /**
      * @Assert\NotBlank()
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $background;
@@ -139,6 +140,7 @@ class Videos
     public function onPrePersist()
     {
         $this->created_at = new \DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**

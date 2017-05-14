@@ -27,4 +27,15 @@ class VideosRepository extends EntityRepository
             ->execute();
     }
 
+    public function findAllOrderByUpdatedAt()
+    {
+        /**
+         * @return Videos[]
+         */
+        return $this->createQueryBuilder('videos')
+            ->orderBy('videos.updated_at', 'DESC')
+            ->getQuery()
+            ->execute();
+    }
+
 }

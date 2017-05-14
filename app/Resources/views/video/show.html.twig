@@ -6,7 +6,7 @@
     <h2 class="video-name">{{ video.name }}</h2>
 
     <div class="video-container">
-        <div class="video-photo"></div>
+        <img class="video-photo" src="{{ asset('uploads/background/' ~ video.background) }}">
         <div class="video-details">
             <dl class="video-details-list">
                 <dt>Plot:</dt>

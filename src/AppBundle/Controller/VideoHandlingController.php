@@ -13,13 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 class VideoHandlingController extends Controller
 {
     /**
-     * @Route("/video/{videoName}", name="video_show")
+     * @Route("/video/{id}", name="video_show")
      */
-    public function showAction($videoName)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $video = $em->getRepository('AppBundle:Videos')
-            ->findOneBy(['name' => $videoName]);
+            ->findOneBy(['id' => $id]);
 
         if(!$video) {
             throw $this->createNotFoundException('Not found');
@@ -57,7 +57,7 @@ class VideoHandlingController extends Controller
             $series[] = [
                 'id' => $course->getId(),
                 'username' => $course->getName(),
-                'avatarUri' => '/images/leanna.jpeg',
+                'avatarUri' => '/uploads/background/'.$videos->getBackground(),
                 'note' => $course->getEnglishSub(),
                 'date' => $course->getCreatedAt()->format('M d, Y')
             ];

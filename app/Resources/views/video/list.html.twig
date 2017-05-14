@@ -14,7 +14,7 @@
         {% for video in videos %}
             <tr>
                 <td>
-                    <a href="{{ path('video_show', {'videoName': video.name}) }}">
+                    <a href="{{ path('video_show', {'id': video.id}) }}">
                     {{ video.name }}
                     </a>
                 </td>
