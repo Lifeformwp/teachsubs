@@ -20,8 +20,8 @@ class VideoFormType extends AbstractType
             ->add('annotation')
             ->add('isPublished', ChoiceType::class, [
                 'choices' => [
-                    'Yes' => true,
-                    'No'  => false,
+                    'Yes' => 0,
+                    'No'  => 1,
                 ]
             ])
             ->add('background', FileType::class, [

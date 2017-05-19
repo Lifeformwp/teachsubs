@@ -20,3 +20,7 @@ AppBundle\Entity\VideoSeries:
         de_sub: <name()>
         it_sub: <name()>
         video: '@videos_*'
+
+AppBundle\Entity\User:
+    user_{1..10}:
+        email: vielon.indie+<current()>@yandex.ru
