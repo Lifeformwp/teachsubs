@@ -24,23 +24,36 @@ class User implements UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
+
     public function getUsername()
     {
         return $this->email;
     }
 
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
     }
 
     public function getPassword()
     {
+        return $this->password;
     }
 
     public function getSalt()
@@ -49,5 +62,32 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+        $this->plainPassword = null;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        $this->password = null;
+    }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
     }
 }

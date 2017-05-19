@@ -2,13 +2,13 @@ AppBundle\Entity\Category:
     category_{1..12}:
         name: <category()>
         annotation: <sentence()>
-        background: <text(40)>
+        background: 9c2aa8a7c8fc3f20a347b3c5a596d732.jpeg
 
 AppBundle\Entity\Videos:
     videos_{1..20}:
         name: <seriesNames()>
         annotation: <sentence()>
-        background: <text(40)>
+        background: 9c2aa8a7c8fc3f20a347b3c5a596d732.jpeg
         category: '@category_*'
 
 AppBundle\Entity\VideoSeries:
@@ -24,3 +24,5 @@ AppBundle\Entity\VideoSeries:
 AppBundle\Entity\User:
     user_{1..10}:
         email: vielon.indie+<current()>@yandex.ru
+        plainPassword: iliketurtles
+        roles: ['ROLE_ADMIN']
