@@ -7,8 +7,10 @@ use AppBundle\Form\VideoFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
+ * @Security("is_granted('ROLE_MANAGE_VIDEOS')")
  * @Route("/admin")
  */
 class VideosAdminController extends Controller
