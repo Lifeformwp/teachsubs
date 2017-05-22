@@ -141,102 +141,102 @@ class VideoSeries
         $this->video = $video;
     }
 
-    public function getEnglishSub()
+    public function getEnSub()
     {
         return $this->en_sub;
     }
 
-    public function setEnglishSub($en_sub)
+    public function setEnSub($en_sub)
     {
         $this->en_sub = $en_sub;
     }
 
-    public function getRussianSub()
+    public function getRuSub()
     {
         return $this->ru_sub;
     }
 
-    public function setRussianSub($ru_sub)
+    public function setRuSub($ru_sub)
     {
         $this->ru_sub = $ru_sub;
     }
 
-    public function getItalianSub()
+    public function getItSub()
     {
         return $this->it_sub;
     }
 
-    public function setItalianSub($it_sub)
+    public function setItSub($it_sub)
     {
         $this->it_sub = $it_sub;
     }
 
-    public function getGermanSub()
+    public function getDeSub()
     {
         return $this->de_sub;
     }
 
-    public function setGermanSub($de_sub)
+    public function setDeSub($de_sub)
     {
         $this->de_sub = $de_sub;
     }
 
-    public function getJapaneseSub()
+    public function getJpSub()
     {
         return $this->jp_sub;
     }
 
-    public function setJapaneseSub($jp_sub)
+    public function setJpSub($jp_sub)
     {
         $this->jp_sub = $jp_sub;
     }
 
-    public function getFrenchSub()
+    public function getFrSub()
     {
         return $this->fr_sub;
     }
 
-    public function setFrenchSub($fr_sub)
+    public function setFrSub($fr_sub)
     {
         $this->fr_sub = $fr_sub;
     }
 
-    public function getChineseSub()
+    public function getZhSub()
     {
         return $this->zh_sub;
     }
 
-    public function setChineseSub($zh_sub)
+    public function setZhSub($zh_sub)
     {
         $this->zh_sub = $zh_sub;
     }
 
-    public function getCzechSub()
+    public function getCsSub()
     {
         return $this->cs_sub;
     }
 
-    public function setCzechSub($cs_sub)
+    public function setCsSub($cs_sub)
     {
         $this->cs_sub = $cs_sub;
     }
 
-    public function getLithuanianSub()
+    public function getLtSub()
     {
         return $this->lt_sub;
     }
 
-    public function setLithuanianSub($lt_sub)
+    public function setLtSub($lt_sub)
     {
         $this->lt_sub = $lt_sub;
     }
 
-    public function getPolishSub()
+    public function getPlSub()
     {
         return $this->pl_sub;
     }
 
-    public function setPolishSub($pl_sub)
+    public function setPlSub($pl_sub)
     {
         $this->pl_sub = $pl_sub;
     }

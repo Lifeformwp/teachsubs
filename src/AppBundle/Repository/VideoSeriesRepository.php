@@ -10,6 +10,7 @@ namespace AppBundle\Repository;
 
 
 use AppBundle\Entity\Videos;
+use AppBundle\Entity\VideoSeries;
 use Doctrine\ORM\EntityRepository;
 
 class VideoSeriesRepository extends EntityRepository
@@ -22,5 +23,26 @@ class VideoSeriesRepository extends EntityRepository
             ->setParameter('videos', $videos);
 
         return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findRelatedVideoSeries(Videos $videos)
+    {
+        return $this->createQueryBuilder('series')
+            ->where('series.video = :videos')
+            ->setParameter('videos', $videos)
+            ->orderBy('series.created_at', 'DESC')
+            ->getQuery()
+            ->execute();
+    }
+
+    public function findAllOrderByUpdatedAt()
+    {
+        /**
+         * @return VideoSeries[]
+         */
+        return $this->createQueryBuilder('series')
+            ->orderBy('series.updated_at', 'DESC')
+            ->getQuery()
+            ->execute();
     }
 }

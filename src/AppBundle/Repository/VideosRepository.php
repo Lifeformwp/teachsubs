@@ -31,4 +31,10 @@ class VideosRepository extends EntityRepository
             ->execute();
     }
 
+    public function findAllOrderedByVideoNameForSeries()
+    {
+        return $this->createQueryBuilder('videos')
+            ->orderBy('videos.name', 'ASC');
+
+    }
 }

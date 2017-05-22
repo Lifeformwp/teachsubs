@@ -160,4 +160,9 @@ class Videos
     {
         $this->isPublished = $isPublished;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

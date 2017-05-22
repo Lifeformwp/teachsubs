@@ -74,9 +74,13 @@ class VideosAdminController extends Controller
             return $this->redirectToRoute('admin_videos_list');
         }
 
+        $seriesRelated = $this->getDoctrine()->getRepository('AppBundle:VideoSeries')
+            ->findRelatedVideoSeries($video);
+
         return $this->render('admin/videos/edit.html.twig', [
             'videoForm' => $form->createView(),
-            'video' => $video
+            'video' => $video,
+            'relatedSeries' => $seriesRelated
         ]);
     }
 }
