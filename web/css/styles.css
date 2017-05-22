@@ -465,7 +465,7 @@ Main components
     .cd-timeline-content {
         margin-left: 0;
         padding: 1.6em;
-        width: 45%;
+        width: 720px;
     }
 
     .cd-timeline-content::before {
@@ -477,7 +477,7 @@ Main components
 
     .cd-timeline-content .cd-date {
         position: absolute;
-        width: 100%;
+        width: 20%;
         left: 122%;
         top: 6px;
         font-size: 16px;

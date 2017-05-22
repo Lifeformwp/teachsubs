@@ -8,7 +8,7 @@ class TranslateAPI
     public function parse($transWord, $fromLng, $destLng)
     {
 
-        $wordsAmount = explode('+', $transWord);
+        $wordsAmount = explode(' ', $transWord);
         $jsonContent = array();
         foreach($wordsAmount as $word) {
             $glosbeLink = "https://glosbe.com/gapi/translate?from=".$fromLng."&dest=".$destLng."&format=json&phrase=".$word."&pretty=true";

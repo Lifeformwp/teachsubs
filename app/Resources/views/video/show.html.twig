@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link href="{{ asset('css/video-js.css') }}" rel="stylesheet">
+
+{% endblock %}
+
 {% block title %}Video   {{ video.name }}{% endblock %}
 
 {% block body %}
@@ -18,23 +26,55 @@
             </dl>
         </div>
     </div>
-    <div id="js-notes-wrapper"></div>
+    <div id="json-answer"></div>
+<div id="js-notes-wrapper">
+    {% for series in seriesSymfony %}
+    <div class="cd-timeline-block">
+            <div class="cd-timeline-img">
+                <img width="60px" height="60px" src="{{ series.backgroundImg }}" class="img-circle" alt="Leanna!" />
+            </div>
+            <div class="cd-timeline-content">
+                <h2>{{ series.seriesName }}</h2>
+                <video
+                        id="my-video"
+                        class="video-js"
+                        controls preload="auto"
+                        width="640"
+                        height="264"
+                        poster="//vjs.zencdn.net/v/oceans.png"
+                        data-setup="{}">
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                    <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+                    <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm">
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/chi_hans/vtt' srclang='zh' label='Chinese' default />
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/eng/vtt' srclang='en' label='English' />
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/spa/vtt' srclang='es' label='Spanish' />
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/fre_ca/vtt' srclang='fr' label='French' />    </video>
+                <p>{{ series.engSub }}</p>
+                <span class="cd-date">{{ series.date }}</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-
+    <script src="{{ asset('js/video.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
     <script type="text/babel">
-        var notesUrl = '{{ path('video_show_notes', {'name': video.name}) }}';
+        var notesUrl = '{{ path('trans_word', {'transWord': 'hello', 'fromLng': 'eng', 'destLng': 'rus' }) }}';
 
         ReactDOM.render(
-          <NoteSection url={notesUrl} />,
-          document.getElementById('js-notes-wrapper')
+                <NoteSection url={notesUrl} />,
+                document.getElementById('json-answer')
         );
     </script>
 {% endblock %}

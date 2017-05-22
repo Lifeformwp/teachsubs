@@ -18,6 +18,7 @@ class APIController extends Controller
      */
     public function getSingularTranslateAction($transWord, $fromLng, $destLng)
     {
+        $transWord = strtolower($transWord);
         $transform = $this->get('app.translation_api');
         $transWord = $transform->parse($transWord, $fromLng, $destLng);
         $jsonWords= array();

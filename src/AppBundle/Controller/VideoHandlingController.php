@@ -25,10 +25,21 @@ class VideoHandlingController extends Controller
             throw $this->createNotFoundException('Not found');
         }
 
+        foreach($video->getCourse() as $course) {
+            $series[] = [
+                'id' => $course->getId(),
+                'seriesName' => $course->getName(),
+                'backgroundImg' => '/uploads/background/'.$video->getBackground(),
+                'engSub' => $course->getEnglishSub(),
+                'date' => $course->getCreatedAt()->format('M d, Y')
+            ];
+        }
+
         $seriesCount = $em->getRepository('AppBundle:VideoSeries')->findAllVideoSeries($video);
         return $this->render('video/show.html.twig', [
             'video' => $video,
             'seriesCount' => $seriesCount,
+            'seriesSymfony' => $series,
         ]);
     }
 
