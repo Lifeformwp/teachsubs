@@ -30,7 +30,7 @@ class VideoHandlingController extends Controller
                 'id' => $course->getId(),
                 'seriesName' => $course->getName(),
                 'backgroundImg' => '/uploads/background/'.$video->getBackground(),
-                'engSub' => $course->getEnglishSub(),
+                'engSub' => $course->getEnSub(),
                 'date' => $course->getCreatedAt()->format('M d, Y')
             ];
         }

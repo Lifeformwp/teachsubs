@@ -20,8 +20,8 @@ var NoteSection = React.createClass({
     },
 
     keyPressed: function(setting) {
-        var s = document.getElementById('subtitles-video-js-get').getElementsByTagName('div')[0];;
-        console.log(s.textContent);
+        /*var s = document.getElementById('subtitles-video-js-get').getElementsByTagName('div')[0];;
+        console.log(s.textContent);*/
             if (setting === 'Enter') {
                 this.loadNotesFromServer()
             }
