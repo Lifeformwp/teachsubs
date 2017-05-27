@@ -93,9 +93,7 @@ module.exports = function makeWebpackConfig(options) {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
-                    presets: [['env', {
-                        "modules": false
-                    }]]
+                    presets: ['react']
                 }
             },
 
