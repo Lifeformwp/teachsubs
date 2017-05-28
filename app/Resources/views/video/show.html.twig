@@ -12,6 +12,7 @@
 
 {% block body %}
     <h2 class="video-name">{{ video.name }}</h2>
+    <div id="root"></div>
 
     <div class="video-container">
         <img class="video-photo" src="{{ asset('uploads/background/' ~ video.background) }}">
@@ -69,12 +70,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
-    <script type="text/babel">
+{#    <script type="text/babel">
         var notesUrl = '{{ path('trans_word', {'transWord': 'hello', 'fromLng': 'eng', 'destLng': 'rus' }) }}';
 
         ReactDOM.render(
                 <NoteSection url={notesUrl} />,
                 document.getElementById('json-answer')
         );
-    </script>
+    </script>#}
+    <script src="{{ webpack_asset('@app/script.js') }}"></script>
 {% endblock %}
