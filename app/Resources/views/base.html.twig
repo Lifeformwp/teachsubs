@@ -31,12 +31,18 @@
             </ul>
         </header>
         {% if is_granted('ROLE_ADMIN') %}
-        <div class="nav-bar col-xs-12">
+        <div class="nav-bar-admin col-xs-12">
             <a href="{{ path('admin_categories_list') }}">Categories</a>
             <a href="{{ path('admin_videos_list') }}">Videos</a>
             <a href="{{ path('admin_series_list') }}">Series courses</a>
         </div>
         {% endif %}
+        <div class="nav-bar col-xs-12">
+            <a href="{{ path('admin_categories_list') }}">Films</a>
+            <a href="{{ path('admin_videos_list') }}">Series</a>
+            <a href="{{ path('admin_series_list') }}">Anime</a>
+            <a href="{{ path('admin_series_list') }}">Documentary</a>
+        </div>
         <div class="main-content">
             {% for msg in app.session.flashBag.get('success') %}
                 <div class="alert alert-success">

@@ -147,12 +147,44 @@ body {
 /******************************
 BODY Styling
 *******************************/
-.video-photo {
+.video-img, .recent-video-img {
     width: 200px;
     height: 200px;
     border: 1px solid #000;
     border-radius: 50%;
     margin-bottom: 30px;
+    object-fit: cover;
+}
+
+.recent-video-text {
+    background-color: black;
+    color: white;
+    opacity: 0.75;
+    width: 196px;
+    margin-left: 3px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+}
+
+.recent-video {
+    display: inline-block;
+    width: 220px;
+    height: 220px;
+    margin: 10px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+}
+
+.recent-videos {
+    text-align: center;
+}
+
+.text-see-all {
+    position: relative;
+    top: 60px;
 }
 
 .video-details-list, .notes-header {
@@ -488,14 +520,26 @@ Main components
         float: right;
     }*/
 
+    .nav-bar-admin {
+        background-color: #1b6d85;
+    }
+
+    .nav-bar-admin a {
+        text-decoration: none;
+        font-size: 16pt;
+        margin-left: 20px;
+        color: whitesmoke;
+    }
+
     .nav-bar {
-        background-color: #bebac0;
+        background-color: #4191c0;
     }
 
     .nav-bar a {
         text-decoration: none;
         font-size: 16pt;
         margin-left: 20px;
+        color: whitesmoke;
     }
 
     .cd-timeline-block:nth-child(even) .cd-timeline-content::before {

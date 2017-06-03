@@ -64,6 +64,11 @@ class Videos
      */
     private $isPublished = true;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $views;
+
     public function __construct()
     {
         $this->course = new ArrayCollection();
@@ -159,6 +164,15 @@ class Videos
     public function setIsPublished($isPublished)
     {
         $this->isPublished = $isPublished;
+    }
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    public function setViews($views)
+    {
+        $this->views = $views;
     }
 
     public function __toString()

@@ -30,6 +30,19 @@ class APIController extends Controller
         return new JsonResponse($jsonWords);
     }
 
+    public function getGoogleTranslationObject()
+    {
 
+    }
 
+    /**
+     * @Route("/apiltr/{transWord}/{fromLng}/{destLng}")
+     * @Method("GET")
+     */
+    public function getTransltrTranslationObject($transWord, $fromLng, $destLng)
+    {
+        $glosbeLink = "http://www.transltr.org/api/translate?text=hi%20there&to=ru";
+        $array2 = json_decode(file_get_contents($glosbeLink), true);
+        return new JsonResponse($array2);
+    }
 }

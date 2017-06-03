@@ -28,20 +28,9 @@ class VideoSeriesRepository extends EntityRepository
     public function findRelatedVideoSeries(Videos $videos)
     {
         return $this->createQueryBuilder('series')
-            ->where('series.video = :videos')
+            ->andWhere('series.video = :videos')
             ->setParameter('videos', $videos)
             ->orderBy('series.created_at', 'DESC')
-            ->getQuery()
-            ->execute();
-    }
-
-    public function findAllOrderByUpdatedAt()
-    {
-        /**
-         * @return VideoSeries[]
-         */
-        return $this->createQueryBuilder('series')
-            ->orderBy('series.updated_at', 'DESC')
             ->getQuery()
             ->execute();
     }

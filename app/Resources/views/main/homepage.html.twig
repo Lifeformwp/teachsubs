@@ -2,7 +2,87 @@
 
 {% block body %}
     <h1 class="page-header text-center"><a href="{{ path('show_all_videos') }}">See all our videos!</a></h1>
-    <div id="root"></div>
-    <script src="{{ webpack_asset('@app/script.js') }}"></script>
-
+    <div class="container">
+        <h2 class="page-header col-xs-10">Recent videos</h2>
+        <a class="text-see-all col-xs-2" href="{{ path('show_all_videos') }}">See all videos</a>
+    </div>
+    <div class="recent-videos">
+        {% for videos in recentVideos %}
+            <div class="recent-video">
+                <a href="{{ asset(path('video_show', {'id': videos.id})) }}">
+                    <img class="recent-video-img" src="{{ asset('uploads/background/' ~ videos.background) }}">
+                    <p class="recent-video-text">{{ videos.category.name }} | {{ videos.name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h2 class="page-header col-xs-10">Recent films</h2>
+        <a class="text-see-all col-xs-2" href="">See all films</a>
+    </div>
+    <div class="recent-videos">
+        {% for videos in recentFilms %}
+            <div class="recent-video">
+                <a href="{{ asset(path('video_show', {'id': videos.id})) }}">
+                    <img class="recent-video-img" src="{{ asset('uploads/background/' ~ videos.background) }}">
+                    <p class="recent-video-text">{{ videos.category.name }} | {{ videos.name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h2 class="page-header col-xs-10">Recent TV-Series</h2>
+        <a class="text-see-all col-xs-2" href="">See all TV-Series</a>
+    </div>
+    <div class="recent-videos">
+        {% for videos in recentTVSeries %}
+            <div class="recent-video">
+                <a href="{{ asset(path('video_show', {'id': videos.id})) }}">
+                    <img class="recent-video-img" src="{{ asset('uploads/background/' ~ videos.background) }}">
+                    <p class="recent-video-text">{{ videos.category.name }} | {{ videos.name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h2 class="page-header col-xs-10">Recent anime</h2>
+        <a class="text-see-all col-xs-2" href="">See all anime</a>
+    </div>
+    <div class="recent-videos">
+        {% for videos in recentAnime %}
+            <div class="recent-video">
+                <a href="{{ asset(path('video_show', {'id': videos.id})) }}">
+                    <img class="recent-video-img" src="{{ asset('uploads/background/' ~ videos.background) }}">
+                    <p class="recent-video-text">{{ videos.category.name }} | {{ videos.name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h2 class="page-header col-xs-10">Recent documentary</h2>
+        <a class="text-see-all col-xs-2" href="">See all documentary</a>
+    </div>
+    <div class="recent-videos">
+        {% for videos in recentDocumentary %}
+            <div class="recent-video">
+                <a href="{{ asset(path('video_show', {'id': videos.id})) }}">
+                    <img class="recent-video-img" src="{{ asset('uploads/background/' ~ videos.background) }}">
+                    <p class="recent-video-text">{{ videos.category.name }} | {{ videos.name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container">
+        <h2 class="page-header col-xs-10">Most popular</h2>
+    </div>
+    <div class="recent-videos">
+        {% for videos in mostPopular %}
+            <div class="recent-video">
+                <a href="{{ asset(path('video_show', {'id': videos.id})) }}">
+                    <img class="recent-video-img" src="{{ asset('uploads/background/' ~ videos.background) }}">
+                    <p class="recent-video-text">{{ videos.category.name }} | {{ videos.name }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

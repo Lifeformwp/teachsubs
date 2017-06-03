@@ -24,18 +24,9 @@ class TextFixtures implements FixtureInterface
     {
         $generic = [
             'Films',
-            'Series',
+            'TV-Series',
             'Anime',
-            'Documental',
-            'Learning',
-            'Courses',
-            'Audiobooks',
-            'Games',
-            'Books',
-            'Animation',
-            'Videos',
-            'Cookies',
-            'Literature'
+            'Documentary',
         ];
 
         $key = array_rand($generic);
@@ -59,6 +50,24 @@ class TextFixtures implements FixtureInterface
             'The Lion King',
             'Interstellar',
             'Back to the Future'
+        ];
+
+        $key = array_rand($generic);
+
+        return $generic[$key];
+    }
+
+    public function videosImg()
+    {
+        $generic = [
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '4.jpg',
+            '5.jpg',
+            '6.jpg',
+            '7.jpg',
+            '9c2aa8a7c8fc3f20a347b3c5a596d732.jpeg'
         ];
 
         $key = array_rand($generic);

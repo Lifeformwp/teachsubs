@@ -15,7 +15,7 @@
     <div id="root"></div>
 
     <div class="video-container">
-        <img class="video-photo" src="{{ asset('uploads/background/' ~ video.background) }}">
+        <img class="video-img" src="{{ asset('uploads/background/' ~ video.background) }}">
         <div class="video-details">
             <dl class="video-details-list">
                 <dt>Plot:</dt>
@@ -24,6 +24,8 @@
                 <dd>{{ seriesCount }}/8</dd>
                 <dt>Updated at:</dt>
                 <dd>{{ video.updatedAt|date('Y-m-d h-m') }}</dd>
+                <dt>Views</dt>
+                <dd>{{ video.views }}</dd>
             </dl>
         </div>
     </div>
@@ -53,7 +55,8 @@
                     <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/chi_hans/vtt' srclang='zh' label='Chinese' />
                     <track kind='captions' src='{{ series.engSub }}' srclang='en' label='English' default />
                     <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/spa/vtt' srclang='es' label='Spanish' />
-                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/fre_ca/vtt' srclang='fr' label='French' />    </video>
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/fre_ca/vtt' srclang='fr' label='French' />
+                </video>
                 <p></p>
                 <span class="cd-date">{{ series.date }}</span>
             </div>

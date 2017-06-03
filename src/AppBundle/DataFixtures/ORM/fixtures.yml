@@ -1,18 +1,21 @@
 AppBundle\Entity\Category:
-    category_{1..12}:
+    category_{1..4}:
         name: <category()>
         annotation: <sentence()>
         background: 9c2aa8a7c8fc3f20a347b3c5a596d732.jpeg
 
 AppBundle\Entity\Videos:
-    videos_{1..20}:
+    videos_{1..40}:
         name: <seriesNames()>
         annotation: <sentence()>
-        background: 9c2aa8a7c8fc3f20a347b3c5a596d732.jpeg
+        background: <videosImg()>
         category: '@category_*'
+        views: <numberBetween(1, 200)>
+        updated_at: <dateTimeBetween("-20 days", "now")>
+        isPublished: <numberBetween(0, 1)>
 
 AppBundle\Entity\VideoSeries:
-    videoseries_{1..60}:
+    videoseries_{1..280}:
         name: <name()>
         en_sub: <name()>
         ru_sub: <name()>

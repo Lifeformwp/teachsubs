@@ -21,6 +21,10 @@ class VideoHandlingController extends Controller
         $video = $em->getRepository('AppBundle:Videos')
             ->findOneBy(['id' => $id]);
 
+        $video->setViews($video->getViews()+1);
+        $em->persist($video);
+        $em->flush();
+
         if(!$video) {
             throw $this->createNotFoundException('Not found');
         }
