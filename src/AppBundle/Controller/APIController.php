@@ -18,7 +18,7 @@ class APIController extends Controller
      */
     public function getSingularTranslateAction($transWord, $fromLng, $destLng)
     {
-        $transWord = strtolower($transWord);
+        /*$transWord = strtolower($transWord);
         $transform = $this->get('app.translation_api');
         $transWord = $transform->parse($transWord, $fromLng, $destLng);
         $jsonWords= array();
@@ -26,7 +26,19 @@ class APIController extends Controller
             array_push($jsonWords, $transWord[$key]['tuc'][0]['phrase']);
             array_push($jsonWords, $transWord[$key]['tuc'][0]['meanings']);
 
+        }*/
+        $sample = array('describe', 'all', 'hearing', 'music');
+        $simple = array('captions', 'relevant', 'audio', 'for');
+        if(in_array($transWord, $sample)) {
+            $jsonWords = array(
+                'text' => 'привет мир'
+            );
+        } else if(in_array($transWord, $simple)) {
+            $jsonWords = array(
+                'text' => 'второй вариант привет мир'
+            );
         }
+
         return new JsonResponse($jsonWords);
     }
 
