@@ -41,7 +41,7 @@ class APIController extends Controller
      */
     public function getTransltrTranslationObject($transWord, $fromLng, $destLng)
     {
-        $glosbeLink = "http://www.transltr.org/api/translate?text=hi%20there&to=ru";
+        $glosbeLink = "http://www.transltr.org/api/translate?text=hello%20world&to=ru";
         $array2 = json_decode(file_get_contents($glosbeLink), true);
         return new JsonResponse($array2);
     }

@@ -34,4 +34,15 @@ class VideoSeriesRepository extends EntityRepository
             ->getQuery()
             ->execute();
     }
+
+    public function findAllOrderByUpdatedAt()
+    {
+        /**
+         * @return VideoSeries[]
+         */
+        return $this->createQueryBuilder('series')
+            ->orderBy('series.updated_at','DESC')
+            ->getQuery()
+            ->execute();
+    }
 }
