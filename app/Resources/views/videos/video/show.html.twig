@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link href="{{ asset('css/video-js.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+    <h2>{{ series.name }}</h2>
+<div class="cd-timeline-block" style="
+    margin-top: 100px;
+    text-align: center;
+">
+    <video
+                        id="my-video"
+                        class="video-js"
+                        controls preload="auto"
+                        width="1200px"
+                        height="600px"
+                        poster="//vjs.zencdn.net/v/oceans.png"
+                        data-setup="{}">
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                    <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+                    <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm">
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/chi_hans/vtt' srclang='zh' label='Chinese' />
+                    <track kind='captions' src='{{ series.EnSub }}' srclang='en' label='English' default />
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/spa/vtt' srclang='es' label='Spanish' />
+                    <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/fre_ca/vtt' srclang='fr' label='French' />
+                </video>
+    <div id="data" style="position:absolute;z-index: 21474836472;"></div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {#<script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>#}
+    {#    <script type="text/babel">
+            var notesUrl = '{{ path('trans_word', {'transWord': 'hello', 'fromLng': 'eng', 'destLng': 'rus' }) }}';
+
+            ReactDOM.render(
+                    <NoteSection url={notesUrl} />,
+                    document.getElementById('json-answer')
+            );
+        </script>#}
+    <script src="{{ webpack_asset('@app/script.js') }}"></script>
+{% endblock %}

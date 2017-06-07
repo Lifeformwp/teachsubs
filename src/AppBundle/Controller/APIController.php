@@ -6,9 +6,9 @@ use AppBundle\Service\TranslateAPI;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class APIController extends Controller
 {
@@ -18,7 +18,7 @@ class APIController extends Controller
      */
     public function getSingularTranslateAction($transWord, $fromLng, $destLng)
     {
-        /*$transWord = strtolower($transWord);
+        $transWord = strtolower($transWord);
         $transform = $this->get('app.translation_api');
         $transWord = $transform->parse($transWord, $fromLng, $destLng);
         $jsonWords= array();
@@ -26,7 +26,8 @@ class APIController extends Controller
             array_push($jsonWords, $transWord[$key]['tuc'][0]['phrase']);
             array_push($jsonWords, $transWord[$key]['tuc'][0]['meanings']);
 
-        }*/
+        }
+        /*
         $sample = array('describe', 'all', 'hearing', 'music');
         $simple = array('captions', 'relevant', 'audio', 'for');
         if(in_array($transWord, $sample)) {
@@ -38,7 +39,7 @@ class APIController extends Controller
                 'text' => 'второй вариант привет мир'
             );
         }
-
+        */
         return new JsonResponse($jsonWords);
     }
 
@@ -56,5 +57,22 @@ class APIController extends Controller
         $glosbeLink = "http://www.transltr.org/api/translate?text=hello%20world&to=ru";
         $array2 = json_decode(file_get_contents($glosbeLink), true);
         return new JsonResponse($array2);
+    }
+
+    /**
+     * @Route("/saveWord")
+     * @Method("POST")
+     */
+    public function getSavedWordsData(Request $request)
+    {
+        $requestContent = $request->getContent();
+        if ($requestContent) {
+            $outputContent = array(
+                'text' => json_decode($requestContent)
+                );
+        } else {
+            $outputContent = null;
+        }
+        return new JsonResponse($outputContent);
     }
 }

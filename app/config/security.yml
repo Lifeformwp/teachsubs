@@ -6,6 +6,7 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN: [ROLE_MANAGE_VIDEOS, ROLE_MANAGE_SERIES, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_USER: [ROLE_USER_PANEL]
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_users:

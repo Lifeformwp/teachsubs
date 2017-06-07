@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import VideoPlayer from './Video.jsx';
+import './modalstyle.css';
 
 class Modal extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            words: 'stop',
+            previousWord:'stop',
+            visible: false
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
             words: '',
-            previousWord:'stop'
-        }
+            visible: true,
+            previousWord: this.props.nodes
+        }, function () {
+            this.translate();
+        });
     }
 
     componentWillReceiveProps() {
-        this.setState({previousWord: this.props.nodes}, function () {
+        this.setState({
+            words: '',
+            visible:true,
+            previousWord: this.props.nodes
+        }, function () {
             this.translate();
         });
+    }
+
+    capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
      translate() {
@@ -23,27 +43,51 @@ class Modal extends Component {
         let FETCH_URL = `http://localhost:8000/api/${transWords}/eng/rus`;
         console.log(FETCH_URL);
 
+
         fetch(FETCH_URL, {
             method: 'GET',
         })
         .then(response => response.json())
         .then(json => {
-            const query = json.text;
-            this.setState({words: query});
+            const query = json[0].text;
+            if (query == '') {
+                this.setState({words: 'Не удалось перевести текст'});
+            } else {
+                this.setState({words: this.capitalize(query)});
+            }
         });
-         return (
-             <div id="myModal" className="modal">
-                 <div className="modal-content">
-                     <span className="close">&times;</span>
-                     <p>{this.state.words}</p>
-                 </div>
-             </div>
-         )
+    }
+
+    close() {
+        this.setState({
+            visible: false
+        }, function() {
+            console.log('Good move');
+        })
+    }
+
+    sendData(data) {
+        fetch('http://localhost:8000/saveWord', {
+            method: 'POST',
+            body: JSON.stringify({
+                test: data,
+            })
+        })
+        .then(response => response.json())
+        .then(json => {
+            console.log(json.text.test);
+        })
     }
     render() {
+        let modalClass = this.state.visible ? "modal-fade-in" : "modal-fade-out";
+        let modalStyle = this.state.visible ? {display: "block"} : {display: "none"};
         return (
-            <div>
-                {this.state.words}
+            <div id="myModal" className="fade-in" style={modalStyle}>
+                <div className="content">
+                    <span className="close-text" onClick={() => this.close()}>&times;</span>
+                    <p className="translated-text">Translation: <span className="translated-word">{this.state.words}</span></p>
+                    <button onClick={() => this.sendData(this.props.nodes)}>Save word</button>
+                </div>
             </div>
         )
     }

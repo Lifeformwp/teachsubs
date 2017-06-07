@@ -12,8 +12,8 @@
 
 {% block body %}
     <h2 class="video-name">{{ video.name }}</h2>
-    <div id="root"></div>
-    <div id="data"></div>
+    <!--<div id="root"></div>
+    <div id="data"></div>-->
     <div class="video-container">
         <img class="video-img" src="{{ asset('uploads/background/' ~ video.background) }}">
         <div class="video-details">
@@ -37,8 +37,8 @@
                 <img width="60px" height="60px" src="{{ series.backgroundImg }}" class="img-circle" alt="Leanna!" />
             </div>
             <div class="cd-timeline-content">
-                <h2>{{ series.seriesName }}</h2>
-                <video
+                <a href="{{ asset(path('show_single_video', {'id': series.id})) }}">{{ series.seriesName }}</a>
+                <!--<video
                         id="my-video"
                         class="video-js"
                         controls preload="auto"
@@ -56,7 +56,7 @@
                     <track kind='captions' src='{{ series.engSub }}' srclang='en' label='English' default />
                     <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/spa/vtt' srclang='es' label='Spanish' />
                     <track kind='captions' src='https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/fre_ca/vtt' srclang='fr' label='French' />
-                </video>
+                </video>-->
                 <p></p>
                 <span class="cd-date">{{ series.date }}</span>
             </div>

@@ -40,7 +40,7 @@ class VideoHandlingController extends Controller
         }
 
         $seriesCount = $em->getRepository('AppBundle:VideoSeries')->findAllVideoSeries($video);
-        return $this->render('video/show.html.twig', [
+        return $this->render('videos/show.html.twig', [
             'video' => $video,
             'seriesCount' => $seriesCount,
             'seriesSymfony' => $series,
@@ -56,7 +56,7 @@ class VideoHandlingController extends Controller
         $videos = $em->getRepository('AppBundle:Videos')
             ->findAllPublishedOrderByCreatedAt();
 
-        return $this->render('video/list.html.twig', [
+        return $this->render('videos/list.html.twig', [
             'videos' => $videos,
         ]);
     }
@@ -83,5 +83,19 @@ class VideoHandlingController extends Controller
         ];
 
         return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/video/show/{id}", name="show_single_video")
+     */
+    public function showSeriesAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $series = $em->getRepository('AppBundle:VideoSeries')
+            ->findOneBy(['id' => $id]);
+
+        return $this->render('videos/video/show.html.twig', [
+            'series' => $series,
+        ]);
     }
 }

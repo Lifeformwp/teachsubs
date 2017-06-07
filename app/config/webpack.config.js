@@ -158,6 +158,11 @@ module.exports = function makeWebpackConfig(options) {
              * If ExtractTextPlugin is disabled, use style loader
              * Reference: https://github.com/webpack/style-loader
              */
+
+            {
+                test: /\.(less|css)$/,
+                loader: 'style!css!less'
+            },
             {
                 test: /\.(css|less|scss)$/i,
                 loader: ExtractTextPlugin.extract({
