@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use AppBundle\Service\TranslateAPI;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -67,9 +68,21 @@ class APIController extends Controller
     {
         $requestContent = $request->getContent();
         if ($requestContent) {
+            $word = json_decode($requestContent);
             $outputContent = array(
-                'text' => json_decode($requestContent)
+                'text' => $word->{'word'}
                 );
+            //$usr = $this->get('security.token_storage')->getToken()->getUser();
+            //$userId = $usr->getId();
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('AppBundle:User')
+                ->findOneBy(['id' => $word->{'id'}]);
+
+            $savedWords = $user->getSavedWords();
+            $savedWords[] = $word->{'word'};
+            $user->setSavedWords($savedWords);
+            $em->persist($user);
+            $em->flush();
         } else {
             $outputContent = null;
         }

@@ -110,14 +110,14 @@ body {
     background-color: transparent;
 }
 
-.navi li:last-child a {
+.navi li a {
     background: #eee;
     border-radius: 2px;
     transition: 200ms ease-in-out;
     padding: 8px 16px 7px;
 }
 
-.navi li:last-child a:hover {
+.navi li a:hover {
     background: rgba(200, 200, 200, .5);
     color: #000;
 }

@@ -3,7 +3,16 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            {{ app.user ? app.user.id : '' }}
+            <div class="col-xs-6">
+                <h2>Hello, {{ user.email }}</h2>
+            </div>
+            <div class="col-xs-8">
+                <p>Here is your words</p>
+                {% for words in user.savedWords %}
+                    <p>{{ words }}</p>
+                {% endfor %}
+            </div>
+
         </div>
     </div>
 {% endblock %}

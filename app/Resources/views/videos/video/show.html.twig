@@ -40,6 +40,10 @@
 {% block javascripts %}
     {{ parent() }}
 
+     <script type="text/javascript">
+         var userCredentials = {{ app.user ? app.user.id : null }};
+         console.log(userCredentials);
+     </script>
     {#<script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>#}
     {#    <script type="text/babel">
             var notesUrl = '{{ path('trans_word', {'transWord': 'hello', 'fromLng': 'eng', 'destLng': 'rus' }) }}';

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import VideoPlayer from './Video.jsx';
-import './modalstyle.css';
 
 class Modal extends Component {
 
@@ -66,11 +65,12 @@ class Modal extends Component {
         })
     }
 
-    sendData(data) {
+    sendData(word, id) {
         fetch('http://localhost:8000/saveWord', {
             method: 'POST',
             body: JSON.stringify({
-                test: data,
+                word: word,
+                id: id
             })
         })
         .then(response => response.json())
@@ -86,7 +86,7 @@ class Modal extends Component {
                 <div className="content">
                     <span className="close-text" onClick={() => this.close()}>&times;</span>
                     <p className="translated-text">Translation: <span className="translated-word">{this.state.words}</span></p>
-                    <button onClick={() => this.sendData(this.props.nodes)}>Save word</button>
+                    <button onClick={() => this.sendData(this.props.nodes, this.props.userCredentials)}>Save word</button>
                 </div>
             </div>
         )

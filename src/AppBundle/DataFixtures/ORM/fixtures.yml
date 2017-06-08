@@ -17,11 +17,10 @@ AppBundle\Entity\Videos:
 AppBundle\Entity\VideoSeries:
     videoseries_{1..280}:
         name: <name()>
-        en_sub: <name()>
-        ru_sub: <name()>
-        jp_sub: <name()>
-        de_sub: <name()>
-        it_sub: <name()>
+        en_sub: 'https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/eng/vtt'
+        fr_sub: 'https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/fre_ca/vtt'
+        it_sub: 'https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/spa/vtt'
+        zh_sub: 'https://dotsub.com/media/5d5f008c-b5d5-466f-bb83-2b3cfa997992/c/chi_hans/vtt'
         video: '@videos_*'
 
 AppBundle\Entity\User:

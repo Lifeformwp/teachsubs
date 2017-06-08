@@ -15,7 +15,7 @@ $(document).on('mouseover', '.words-separate', function(){
     var log = $(this).text();
     console.log($(this).text());
     ReactDOM.render(
-    <Modal  nodes={log}/>,
+    <Modal  nodes={log} userCredentials={userCredentials}/>,
         document.getElementById('data')
     );
     $(this).css('background', "#0000ff");

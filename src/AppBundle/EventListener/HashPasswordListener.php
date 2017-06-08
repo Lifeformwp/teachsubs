@@ -33,11 +33,6 @@ class HashPasswordListener implements EventSubscriber
         if (!$entity instanceof User) {
             return;
         }
-
-        $this->encodePassword($entity);
-        $em = $args->getEntityManager();
-        $meta = $em->getClassMetadata(get_class($entity));
-        $em->getUnitOfWork()->recomputeSingleEntityChangeSet($meta, $entity);
     }
 
     public function getSubscribedEvents()

@@ -46,6 +46,21 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $savedWords = [];
+
+    public function getSavedWords()
+    {
+        return $this->savedWords;
+    }
+
+    public function setSavedWords($savedWords)
+    {
+        $this->savedWords = $savedWords;
+    }
+
     public function getId()
     {
         return $this->id;
