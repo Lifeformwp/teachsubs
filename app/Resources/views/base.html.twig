@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="search-bar">
-            <form method="GET" action="" class="js-sea-search sea-search">
+            <form method="GET" action="/search" class="js-sea-search sea-search">
                 <input type="search" name="q" placeholder="Search Sea Creatures" autocomplete="off" class="search-input">
             </form>
         </div>
@@ -40,10 +40,10 @@
         </div>
         {% endif %}
         <div class="nav-bar col-xs-12">
-            <a href="{{ path('admin_categories_list') }}">Films</a>
-            <a href="{{ path('admin_videos_list') }}">Series</a>
-            <a href="{{ path('admin_series_list') }}">Anime</a>
-            <a href="{{ path('admin_series_list') }}">Documentary</a>
+            <a href="{{ path('list_category', {'id': 220}) }}">Films</a>
+            <a href="{{ path('list_category', {'id': 221}) }}">Series</a>
+            <a href="{{ path('list_category', {'id': 222}) }}">Anime</a>
+            <a href="{{ path('list_category', {'id': 219}) }}">Documentary</a>
         </div>
         <div class="main-content">
             {% for msg in app.session.flashBag.get('success') %}
@@ -62,6 +62,7 @@
 
         {% block javascripts %}
             <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
     </body>
 </html>

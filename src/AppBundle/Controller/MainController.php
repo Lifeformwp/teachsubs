@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,5 +51,50 @@ class MainController extends Controller
         ]);
     }
 
+//    /**
+//     * @Route("/searh", name="search_list")
+//     * @Method("POST")
+//     */
+//    public function searchAction(Request $request)
+//    {
+//        $searchWord = $request->request->get('q');
+//
+//        $em = $this->getDoctrine()
+//            ->getManager();
+//        $videos = $em->getRepository('AppBundle:Videos')
+//            ->findByTitlePart($searchWord);
+//
+//        return $this->render('videos/search/list.html.twig', array(
+//            'videos' => $videos,
+//        ));
+//
+//    }
 
+    /**
+     * @Route("/search", name="search_list")
+     * @Method("GET")
+     */
+    public function searhAction(Request $request)
+    {
+        $searchWord = $request->query->get('q');
+
+        $em = $this->getDoctrine()
+            ->getManager();
+        $videos = $em->getRepository('AppBundle:Videos')
+            ->findByTitlePart($searchWord);
+
+        return $this->render('videos/search/list.html.twig', array(
+            'videos' => $videos,
+        ));
+
+    }
+
+    /**
+     * @Route("/test")
+     */
+    public function testAction()
+    {
+        $test = file_get_contents('https://translate.google.so/translate_a/t?client=any_client_id_works&sl=auto&tl=ru&q=malentendants&tbb=1&ie=UTF-8&oe=UTF-8');
+        dump($test);die;
+    }
 }

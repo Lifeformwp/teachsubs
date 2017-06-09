@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1 class="page-header text-center"><a href="{{ path('show_all_videos') }}">See all our videos!</a></h1>
     <div class="container">
         <h2 class="page-header col-xs-10">Recent videos</h2>
         <a class="text-see-all col-xs-2" href="{{ path('show_all_videos') }}">See all videos</a>
@@ -18,7 +17,7 @@
     </div>
     <div class="container">
         <h2 class="page-header col-xs-10">Recent films</h2>
-        <a class="text-see-all col-xs-2" href="">See all films</a>
+        <a class="text-see-all col-xs-2" href="{{ path('list_category', {'id': 220}) }}">See all films</a>
     </div>
     <div class="recent-videos">
         {% for videos in recentFilms %}
@@ -32,7 +31,7 @@
     </div>
     <div class="container">
         <h2 class="page-header col-xs-10">Recent TV-Series</h2>
-        <a class="text-see-all col-xs-2" href="">See all TV-Series</a>
+        <a class="text-see-all col-xs-2" href="{{ path('list_category', {'id': 221}) }}">See all TV-Series</a>
     </div>
     <div class="recent-videos">
         {% for videos in recentTVSeries %}
@@ -46,7 +45,7 @@
     </div>
     <div class="container">
         <h2 class="page-header col-xs-10">Recent anime</h2>
-        <a class="text-see-all col-xs-2" href="">See all anime</a>
+        <a class="text-see-all col-xs-2" href="{{ path('list_category', {'id': 222}) }}">See all anime</a>
     </div>
     <div class="recent-videos">
         {% for videos in recentAnime %}
@@ -60,7 +59,7 @@
     </div>
     <div class="container">
         <h2 class="page-header col-xs-10">Recent documentary</h2>
-        <a class="text-see-all col-xs-2" href="">See all documentary</a>
+        <a class="text-see-all col-xs-2" href="{{ path('list_category', {'id': 219}) }}">See all documentary</a>
     </div>
     <div class="recent-videos">
         {% for videos in recentDocumentary %}

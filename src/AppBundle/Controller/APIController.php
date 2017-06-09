@@ -69,20 +69,30 @@ class APIController extends Controller
         $requestContent = $request->getContent();
         if ($requestContent) {
             $word = json_decode($requestContent);
-            $outputContent = array(
-                'text' => $word->{'word'}
-                );
+
             //$usr = $this->get('security.token_storage')->getToken()->getUser();
             //$userId = $usr->getId();
+
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('AppBundle:User')
                 ->findOneBy(['id' => $word->{'id'}]);
 
             $savedWords = $user->getSavedWords();
-            $savedWords[] = $word->{'word'};
-            $user->setSavedWords($savedWords);
-            $em->persist($user);
-            $em->flush();
+
+            if(!in_array($word->{'word'}, $savedWords)) {
+                $savedWords[] = $word->{'word'};
+                $user->setSavedWords($savedWords);
+                $em->persist($user);
+                $em->flush();
+                $outputContent = array(
+                    'text' => $word->{'word'}
+                );
+            } else {
+                $outputContent = array(
+                    'text' => 'in_array'
+                );
+            }
+
         } else {
             $outputContent = null;
         }

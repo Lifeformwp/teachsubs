@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block body %}
-    <h2>{{ series.name }}</h2>
 <div class="cd-timeline-block" style="
     margin-top: 100px;
     text-align: center;
 ">
+    <h2>{{ series.name }}</h2>
     <video
                         id="my-video"
                         class="video-js"
@@ -41,7 +41,7 @@
     {{ parent() }}
 
      <script type="text/javascript">
-         var userCredentials = {{ app.user ? app.user.id : null }};
+         var userCredentials = {{ app.user ? app.user.id : 'undefined' }};
          console.log(userCredentials);
      </script>
     {#<script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>#}

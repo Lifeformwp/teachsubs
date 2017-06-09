@@ -55,7 +55,7 @@ class VideosRepository extends EntityRepository
             ->andWhere('videos.isPublished = :isPublished')
             ->setParameter(':isPublished', 0)
             ->andWhere('videos.category = :categoryName')
-            ->setParameter(':categoryName', 209)
+            ->setParameter(':categoryName', 220)
             ->orderBy('videos.updated_at', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
@@ -68,7 +68,7 @@ class VideosRepository extends EntityRepository
             ->andWhere('videos.isPublished = :isPublished')
             ->setParameter(':isPublished', 0)
             ->andWhere('videos.category = :categoryName')
-            ->setParameter(':categoryName', 208)
+            ->setParameter(':categoryName', 221)
             ->orderBy('videos.updated_at', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
@@ -81,7 +81,7 @@ class VideosRepository extends EntityRepository
             ->andWhere('videos.isPublished = :isPublished')
             ->setParameter(':isPublished', 0)
             ->andWhere('videos.category = :categoryName')
-            ->setParameter(':categoryName', 207)
+            ->setParameter(':categoryName', 222)
             ->orderBy('videos.updated_at', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
@@ -94,7 +94,7 @@ class VideosRepository extends EntityRepository
             ->andWhere('videos.isPublished = :isPublished')
             ->setParameter(':isPublished', 0)
             ->andWhere('videos.category = :categoryName')
-            ->setParameter(':categoryName', 210)
+            ->setParameter(':categoryName', 219)
             ->orderBy('videos.updated_at', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
@@ -108,6 +108,15 @@ class VideosRepository extends EntityRepository
             ->setParameter(':isPublished', 0)
             ->orderBy('videos.views', 'DESC')
             ->setMaxResults(5)
+            ->getQuery()
+            ->execute();
+    }
+
+    public function findByTitlePart($title)
+    {
+        return $this->createQueryBuilder('v')
+            ->where('v.name LIKE :title')
+            ->setParameter(':title', $title)
             ->getQuery()
             ->execute();
     }

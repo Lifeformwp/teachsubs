@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import VideoPlayer from './Video.jsx';
+import Speech from 'react-speech';
 
 class Modal extends Component {
 
@@ -38,8 +39,9 @@ class Modal extends Component {
 
      translate() {
         let transWords = this.props.nodes.toLowerCase();
-        const BASE_URL = `https://glosbe.com/gapi/translate?from=eng&dest=ru&format=json&phrase=`;
-        let FETCH_URL = `http://localhost:8000/api/${transWords}/eng/rus`;
+        //const BASE_URL = `https://glosbe.com/gapi/translate?from=eng&dest=ru&format=json&phrase=`;
+        //let FETCH_URL = `http://localhost:8000/api/${transWords}/eng/rus`;
+        let FETCH_URL = `http://www.transltr.org/api/translate?text=${transWords}&to=ru`;
         console.log(FETCH_URL);
 
 
@@ -48,7 +50,7 @@ class Modal extends Component {
         })
         .then(response => response.json())
         .then(json => {
-            const query = json[0].text;
+            const query = json['translationText'];
             if (query == '') {
                 this.setState({words: 'Не удалось перевести текст'});
             } else {
@@ -75,7 +77,7 @@ class Modal extends Component {
         })
         .then(response => response.json())
         .then(json => {
-            console.log(json.text.test);
+            console.log(json.text);
         })
     }
     render() {
@@ -86,7 +88,16 @@ class Modal extends Component {
                 <div className="content">
                     <span className="close-text" onClick={() => this.close()}>&times;</span>
                     <p className="translated-text">Translation: <span className="translated-word">{this.state.words}</span></p>
-                    <button onClick={() => this.sendData(this.props.nodes, this.props.userCredentials)}>Save word</button>
+                    {
+                        this.props.userCredentials === undefined
+                        ? <p>Зарегистрируйтесь, чтобы сохранять слова в профиль</p>
+                        :   <div>
+                                <span>
+                                    <button className="button-add" onClick={() => this.sendData(this.props.nodes, this.props.userCredentials)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 5"><path d="M2 1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z"></path></svg></button>
+                                </span>
+                                <Speech text={this.props.nodes} />
+                            </div>
+                    }
                 </div>
             </div>
         )

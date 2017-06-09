@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Video</th>
+        <th># of series</th>
+        <th>Created at</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>
+                    <a href="{{ path('video_show', {'id': video.id}) }}">
+                    {{ video.name }}
+                    </a>
+                </td>
+                <td>{{ video.annotation }}</td>
+                <td>{{ video.createdAt|date('Y-m-d h-m') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
