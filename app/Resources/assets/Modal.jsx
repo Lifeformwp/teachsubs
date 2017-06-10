@@ -68,10 +68,11 @@ class Modal extends Component {
     }
 
     sendData(word, id) {
+        var lowerWord = word.toLowerCase();
         fetch('http://localhost:8000/saveWord', {
             method: 'POST',
             body: JSON.stringify({
-                word: word,
+                word: lowerWord,
                 id: id
             })
         })

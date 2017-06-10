@@ -4,16 +4,21 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2>Hello, {{ user.email }}</h2>
+                <h2>Hello, user! Here you can see your saved words and learn them as you wish to!</h2>
             </div>
-            <div class="col-xs-4">
-                <p>Here is your words</p>
+            <div class="col-xs-4" style="margin-top:20px;">
+                <b>Here is your words:</b>
                 {% for words in user.savedWords %}
-                    <p>{{ words }}</p>
+                    <p class="words-separate">{{ words }}</p>
                 {% endfor %}
             </div>
             <div id="data" class="col-xs-8"></div>
 
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ webpack_asset('@app/UserPanel.js') }}"></script>
 {% endblock %}
